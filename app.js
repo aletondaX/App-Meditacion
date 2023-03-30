@@ -11,11 +11,13 @@ const app = () => {
     const outlineLength = outline.getTotalLength();
 
     let fakeDuration = 900;
+    let minutes = Math.floor(fakeDuration / 60);
     let seconds = Math.floor(fakeDuration % 60);
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${seconds}`;
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+
+    timeDisplay.textContent = `${minutes}:${seconds}`;
 
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
@@ -59,25 +61,31 @@ const app = () => {
     };
 
     song.ontimeupdate = () => {
+        // console.log(song.currentTime);
+        // var buffer = 0.5;
         let currentTime = song.currentTime;
-        // console.log(currentTime);
         let elapsed = fakeDuration - currentTime;
+        let minutes = Math.floor(elapsed / 60);
         let seconds = Math.floor(elapsed % 60);
         if (seconds < 10) {
             seconds = "0" + seconds;
         }
-        let minutes = Math.floor(elapsed / 60);
 
         let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
         outline.style.strokeDashoffset = progress;
 
         timeDisplay.textContent = `${minutes}:${seconds}`;
 
+        // if(song.currentTime > song.duration - 2){
+        //     song.currentTime = 2;
+        //     song.play();
+        // }
+
         if (currentTime >= fakeDuration) {
+            video.pause();
             song.pause();
             song.currentTime = 0;
             play.src = "./svg/play.svg";
-            video.pause();
         }
     };
 }
