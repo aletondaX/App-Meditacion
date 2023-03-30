@@ -35,6 +35,12 @@
     left: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
     pointer-events: none;
+    /* box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.7); */
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
+}
+
+.play {
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
 }
 
 .time-display {

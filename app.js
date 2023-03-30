@@ -42,6 +42,7 @@ const app = () => {
                 seconds = "0" + seconds;
             }
             timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${seconds}`
+            song.currentTime = 0;
         });
     });
 
@@ -59,6 +60,7 @@ const app = () => {
 
     song.ontimeupdate = () => {
         let currentTime = song.currentTime;
+        // console.log(currentTime);
         let elapsed = fakeDuration - currentTime;
         let seconds = Math.floor(elapsed % 60);
         if (seconds < 10) {
