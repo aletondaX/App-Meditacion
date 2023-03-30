@@ -10,16 +10,23 @@ const app = () => {
     const timeSelect = document.querySelectorAll(".time-select button");
     const outlineLength = outline.getTotalLength();
 
-    let fakeDuration = 600;
+    let fakeDuration = 900;
+    let seconds = Math.floor(fakeDuration % 60);
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${seconds}`;
 
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
 
     sounds.forEach(sound => {
-        sound.addEventListener("click", function(){
+        sound.addEventListener("click", function () {
             song.src = this.getAttribute("data-sound");
             video.src = this.getAttribute("data-video");
+            outline.style.stroke = this.getAttribute("data-stroke");
             checkPlaying(song);
+            // play.src = "./svg/play.svg"
         })
     })
 
@@ -28,9 +35,13 @@ const app = () => {
     });
 
     timeSelect.forEach(option => {
-        option.addEventListener("click", function(){
+        option.addEventListener("click", function () {
             fakeDuration = this.getAttribute("data-time");
-            timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:0${Math.floor(fakeDuration % 60)}`
+            let seconds = Math.floor(fakeDuration % 60);
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${seconds}`
         });
     });
 
