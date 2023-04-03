@@ -24,6 +24,16 @@ const app = () => {
 
     sounds.forEach(sound => {
         sound.addEventListener("click", function () {
+            // if (this.getAttribute("id") == "lluvia") {
+                // document.getElementById("lluvia").style.display = "none";
+                // document.getElementById("playa").style.display = "none";
+                // document.getElementById("lluvia").style.opacity = "0.3";
+                // document.getElementById("playa").style.opacity = "0.3";
+                // document.querySelector(".sound-picker").innerHTML += `
+                //  <button id="lluvia" data-sound="./sounds/lluvia4.mp3" data-video="./video/rain.mp4" data-stroke="#4972a1"><img src="./svg/rain.svg" alt="rain"></button>
+                //  <button id="playa" data-sound="./sounds/beach.mp3" data-video="./video/beach.mp4" data-stroke="#a14f49"><img src="./svg/beach.svg" alt="beach"></button>`;
+                // return;
+            // }
             song.src = this.getAttribute("data-sound");
             video.src = this.getAttribute("data-video");
             outline.style.stroke = this.getAttribute("data-stroke");
@@ -45,6 +55,12 @@ const app = () => {
             }
             timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${seconds}`
             song.currentTime = 0;
+            timeSelect.forEach(option => {
+                option.style.background = "none";
+                option.style.color = "white";
+            })
+            option.style.background = "white";
+            option.style.color = "black";
         });
     });
 

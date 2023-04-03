@@ -77,9 +77,14 @@ video {
     transition: all 0.4s ease;
 }
 
-.time-select button:hover {
-    color: black;
+.time-select button:first-child {
     background: white;
+    color: black;
+}
+
+.time-select button:hover {
+    color: black !important;
+    background: white !important;
 }
 
 .sound-picker button {
@@ -98,16 +103,19 @@ video {
     background: #a14f49;
 }
 
-.sound-picker button:nth-child(1):hover {
-    background-color: #6e94c0;
-}
-
-.sound-picker button:nth-child(2):hover {
-    background: #cd7b75;
-}
 
 .sound-picker button img {
     height: 100%;
+}
+
+@media (min-width: 913px) {
+    .sound-picker button:nth-child(1):hover {
+        background: #6e94c0;
+    }
+
+    .sound-picker button:nth-child(2):hover {
+        background: #cd7b75;
+    }
 }
 
 @media (max-width: 912px) {
